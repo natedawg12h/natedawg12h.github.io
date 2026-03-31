@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>La Caja Freidora</title>
+<style>
+  /* Reset and base */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: #fff;
+    color: #111;
+    scroll-behavior: smooth;
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+  }
+
+  /* HEADER */
+  header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: white;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    padding: 12px 30px;
+    cursor: pointer;
+    z-index: 1000;
+  }
+  header img {
+    height: 45px;
+    margin-right: 14px;
+  }
+  header h2 {
+    color: #107C10;
+    font-weight: 700;
+    font-size: 26px;
+    user-select: none;
+  }
+
+  /* SPACING for fixed header */
+  .spacer {
+    height: 70px;
+  }
+
+  /* SECTIONS */
+  section {
+    max-width: 900px;
+    margin: 40px auto 80px;
+    padding: 0 20px;
+  }
+
+  /* HOME */
+  #home {
+    text-align: center;
+  }
+  #home img {
+    max-width: 380px;
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(16, 124, 16, 0.25);
+    margin-bottom: 30px;
+  }
+  #home h1 {
+    font-size: 42px;
+    color: #107C10;
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+  #home p.slogan {
+    font-size: 22px;
+    margin-bottom: 24px;
+    color: #444;
+  }
+  #home p.description {
+    font-size: 18px;
+    max-width: 720px;
+    margin: 0 auto 36px;
+    color: #555;
+    line-height: 1.5;
+  }
+  #home .buy-link {
+    font-size: 22px;
+    border: 2px solid #107C10;
+    padding: 14px 42px;
+    border-radius: 12px;
+    display: inline-block;
+    font-weight: 700;
+    transition: background 0.3s, color 0.3s;
+  }
+  #home .buy-link:hover {
+    background: #107C10;
+    color: #fff;
+  }
+
+  /* TECHNOLOGY */
+  #technology {
+    border-top: 1px solid #eee;
+    padding-top: 50px;
+  }
+  #technology h2 {
+    font-size: 32px;
+    color: #107C10;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  #technology p {
+    font-size: 18px;
+    color: #444;
+    max-width: 800px;
+    margin: 0 auto 20px;
+    line-height: 1.6;
+  }
+
+  /* REVIEWS */
+  #reviews {
+    border-top: 1px solid #eee;
+    padding-top: 50px;
+  }
+  #reviews h2 {
+    font-size: 32px;
+    color: #107C10;
+    font-weight: 700;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+  .review-list {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .review {
+    background: #f7fdfa;
+    border: 1px solid #c8e6c9;
+    padding: 18px 24px;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 6px rgba(16,124,16,0.1);
+  }
+  .review .stars {
+    color: #107C10;
+    font-size: 20px;
+    margin-bottom: 6px;
+  }
+  .review .username {
+    font-weight: 700;
+    color: #107C10;
+  }
+  .review .text {
+    color: #333;
+    margin-top: 6px;
+    font-size: 16px;
+  }
+
+  /* CHECKOUT */
+  #checkout {
+    max-width: 600px;
+    margin: 80px auto 100px;
+    padding: 30px;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    background: #fafafa;
+    display: none;
+  }
+  #checkout h3 {
+    text-align: center;
+    font-size: 26px;
+    margin-bottom: 22px;
+    color: #107C10;
+  }
+  #checkout label {
+    display: block;
+    margin-top: 14px;
+    font-size: 16px;
+  }
+  #checkout input, #checkout input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+  #checkout button {
+    margin-top: 20px;
+    width: 100%;
+    background: #107C10;
+    color: white;
+    font-size: 18px;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  #checkout button:hover {
+    background: #0d5a0c;
+  }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    margin-top: 80px;
+    padding: 18px;
+    font-size: 14px;
+    color: #666;
+    border-top: 1px solid #eee;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    header h2 {
+      font-size: 22px;
+    }
+    #home h1 {
+      font-size: 32px;
+    }
+    #technology p, #home p.description {
+      font-size: 16px;
+      padding: 0 10px;
+    }
+    .review-list {
+      max-width: 100%;
+      padding: 0 10px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header onclick="goHome()">
+  <img src="logo.png" alt="La Caja Freidora Logo" />
+  <h2>La Caja Freidora</h2>
+</header>
+
+<div class="spacer"></div>
+
+<!-- HOME -->
+<section id="home">
+  <img src="product.png" alt="La Caja Freidora Product" />
+  <h1>Handle Your Meat Like A Pro</h1>
+  <p class="slogan">Xbox Series X Hybrid Air Fryer — $499 per unit</p>
+  <p class="description">
+    La Caja Freidora revolutionizes your kitchen by combining the cutting-edge Xbox Series X engine with the convenience of an air fryer. Cook your favorite meals faster and healthier while enjoying unparalleled gaming performance. Save space, save time, and enjoy the best of both worlds in one sleek device.
+  </p>
+  <a class="buy-link" onclick="showCheckout()">Buy Here</a>
+</section>
+
+<!-- TECHNOLOGY -->
+<section id="technology">
+  <h2>Technology Behind La Caja Freidora</h2>
+  <p>
+    The core of La Caja Freidora is powered by the Xbox Series X engine, known for its high-performance processing and efficient cooling technology. This allows the device to handle demanding gaming tasks without overheating while simultaneously powering the air fryer.
+  </p>
+  <p>
+    Our air fryer technology uses rapid hot air circulation to cook food evenly with little to no oil, delivering crispy, delicious meals with less fat. The synergy between the Xbox’s cooling system and air fryer’s hot air circulation creates an innovative hybrid that keeps both your gameplay and your meals perfectly balanced.
+  </p>
+  <p>
+    Experience gaming and cooking like never before — all within a sleek, minimalist design that fits perfectly into your living room or kitchen.
+  </p>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <h2>What Gamers Are Saying</h2>
+  <div class="review-list">
+    <div class="review">
+      <div class="stars">★★★★★</div>
+      <div class="username">GamerXPro</div>
+      <div class="text">"This is the ultimate combo! I cooked wings and played Halo without switching devices. Genius!"</div>
+    </div>
+    <div class="review">
+      <div class="stars">★★★★★</div>
+      <div class="username">PixelWarrior</div>
+      <div class="text">"Fast cooking, crisp food, and smooth gameplay. La Caja Freidora changed my setup forever."</div>
+    </div>
+    <div class="review">
+      <div class="stars">★★★★★</div>
+      <div class="username">SnackMaster99</div>
+      <div class="text">"I never thought an air fryer could double as a gaming console. Highly recommend for multitaskers."</div>
+    </div>
+    <div class="review">
+      <div class="stars">★★★★★</div>
+      <div class="username">ProGamerLuxe</div>
+      <div class="text">"Love the design and the seamless integration of cooking and gaming. Five stars!"</div>
+    </div>
+    <div class="review">
+      <div class="stars">★★★★★</div>
+      <div class="username">ByteChef</div>
+      <div class="text">"Healthy cooking and next-level graphics in one device? Count me in."</div>
+    </div>
+  </div>
+</section>
+
+<!-- CHECKOUT -->
+<section id="checkout">
+  <h3>Checkout — $499 each</h3>
+
+  <label for="quantity">Quantity</label>
+  <input type="number" id="quantity" min="1" value="1" />
+
+  <label for="name">Full Name</label>
+  <input type="text" id="name" placeholder="John Smith" />
+
+  <label for="email">Email</label>
+  <input type="email" id="email" placeholder="you@example.com" />
+
+  <label for="address">Shipping Address</label>
+  <input type="text" id="address" placeholder="123 Main St, City, Country" />
+
+  <label for="phone">Phone Number</label>
+  <input type="text" id="phone" placeholder="(555) 555‑5555" />
+
+  <button onclick="completeOrder()">Confirm Purchase</button>
+</section>
+
+<footer>
+  © 2026 La Caja Freidora
+</footer>
+
+<script>
+  // Scroll to top and show home
+  function goHome() {
+    document.getElementById('checkout').style.display = 'none';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Show checkout section
+  function showCheckout() {
+    document.getElementById('checkout').style.display = 'block';
+    window.scrollTo({ top: document.getElementById('checkout').offsetTop - 60, behavior: 'smooth' });
+  }
+
+  // Confirm order validation + alert
+  function completeOrder() {
+    const qty = document.getElementById('quantity').value;
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const address = document.getElementById('address').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+
+    if (!qty || qty < 1) {
+      alert('Please enter a valid quantity.');
+      return;
+    }
+    if (!name || !email || !address || !phone) {
+      alert('Please fill in all fields.');
+      return;
+    }
+
+    alert(`Order confirmed!\n\nThank you, ${name}.\nYou ordered ${qty} unit(s) of La Caja Freidora.\n\n(This is a school project demo — no real payment.)`);
+  }
+</script>
+
+</body>
+</html>
